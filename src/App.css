@@ -81,6 +81,7 @@ html, body {
   font-weight: 700;
   font-size: 1.5rem;
   background: linear-gradient(to right, #fff, var(--accent));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -134,7 +135,7 @@ html, body {
     margin-bottom: 0.5rem; 
     word-wrap: break-word; 
   }
-  
+
 .hero-subtitle {
     font-size: 0.9rem;
     margin-bottom: 0;
@@ -638,8 +639,8 @@ html, body {
    ========================================= */
 .scroll-to-top {
   position: fixed;
-  bottom: 30px;
-  right: 60px;
+  bottom: 35px;
+  right: 35px;
   background: rgba(15, 12, 41, 0.8); /* Gelap transparan */
   border: 1px solid var(--accent);   /* Warna Cyan */
   color: var(--accent);
