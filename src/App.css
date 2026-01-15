@@ -411,3 +411,184 @@ ul { list-style: none; }
 @media screen and (max-width: 960px) {
   .cursor-glow { display: none; }
 }
+
+/* =========================================
+   7. FOOTER STYLE (NEW DESIGN)
+   ========================================= */
+.footer-container {
+  background-color: #0b0f19; /* Latar belakang gelap solid */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4rem 0 2rem 0;
+  margin-top: 4rem;
+  color: #cbd5e1;
+}
+
+/* Layout Grid 3 Kolom */
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr; /* Kolom 1 lebih lebar */
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* Styling Kolom 1 (Identitas) */
+.footer-brand {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.footer-role {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+}
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+/* Styling Heading Kolom */
+.footer-heading {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+/* Styling List Link */
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+.footer-links li {
+  margin-bottom: 10px;
+}
+.footer-links a, 
+.footer-links li {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.footer-links a:hover {
+  color: #00f2ff;
+  padding-left: 5px; /* Efek geser dikit saat hover */
+}
+
+/* Garis Pembatas */
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+}
+
+/* Bagian Bawah (Copyright & Sosmed) */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.copyright-text {
+  font-size: 0.9rem;
+}
+
+/* Ikon Sosmed Bulat (Seperti Contoh) */
+.footer-socials {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon-circle {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+/* Efek Hover per Ikon */
+.social-icon-circle:hover {
+  transform: translateY(-3px); /* Naik dikit */
+  border-color: transparent;
+  background: #fff; /* Default background putih saat hover */
+  color: #000;
+}
+
+/* Warna Khusus saat Hover */
+.social-icon-circle.instagram:hover { background: #E1306C; color: white; }
+.social-icon-circle.tiktok:hover { background: #fff; color: black; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+.social-icon-circle.facebook:hover { background: #1877F2; color: white; }
+.social-icon-circle.whatsapp:hover { background: #25D366; color: white; }
+
+
+/* Responsif Mobile */
+@media screen and (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr; /* Jadi 1 kolom ke bawah */
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .footer-contact-item {
+    justify-content: center; /* Text rata tengah */
+  }
+
+  .footer-bottom {
+    flex-direction: column-reverse; /* Sosmed di atas copyright */
+    text-align: center;
+  }
+}
+
+/* =========================================
+   8. SCROLL TO TOP BUTTON
+   ========================================= */
+.scroll-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(15, 12, 41, 0.8); /* Gelap transparan */
+  border: 1px solid var(--accent);   /* Warna Cyan */
+  color: var(--accent);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Bulat Sempurna */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 999; /* Agar selalu di atas elemen lain */
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.scroll-to-top:hover {
+  background: var(--accent); /* Saat hover jadi Cyan penuh */
+  color: #000; /* Icon jadi hitam */
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px var(--accent-glow);
+}
+
+/* Responsif Mobile: Geser sedikit agar tidak menutupi konten penting */
+@media screen and (max-width: 960px) {
+  .scroll-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+}
