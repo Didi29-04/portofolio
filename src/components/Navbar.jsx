@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className="navbar-container container">
         
         <div className="logo" onClick={closeMobileMenu}>
-          MuhammadAlfidian<span className="highlight">.</span>
+          Alfidian<span className="highlight">.</span>
         </div>
 
         <div className="menu-icon" onClick={handleClick}>

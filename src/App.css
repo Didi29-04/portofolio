@@ -46,6 +46,13 @@ ul { list-style: none; }
 .highlight { color: var(--accent); }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden; /* Ini obat utamanya */
+  position: relative;
+}
+
 /* =========================================
    2. NAVBAR (RESPONSIVE & GLASS)
    ========================================= */
@@ -119,11 +126,28 @@ ul { list-style: none; }
 }
 
 .hero-text { flex: 1; }
-.hero-title { font-size: 3.5rem; line-height: 1.1; margin-bottom: 10px; }
-.hero-subtitle { font-size: 1.5rem; color: var(--text-secondary); font-weight: 300; margin-bottom: 1.5rem; }
+
+.hero-title { 
+    font-size: 1.8rem; 
+    line-height: 1.2;
+    margin-top: 0.5rem;  
+    margin-bottom: 0.5rem; 
+    word-wrap: break-word; 
+  }
+  
+.hero-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    color: var(--accent);
+  }
 .hero-description { line-height: 1.8; color: #cbd5e1; font-size: 1.1rem; margin-bottom: 2rem; }
 
 .hero-buttons { display: flex; align-items: center; gap: 1.5rem; }
+
+.hero-text h3 {
+    font-size: 0.95rem !important;
+    margin-bottom: 1.2rem !important;
+  }
 
 .cta-button {
   background: transparent;
@@ -166,9 +190,6 @@ ul { list-style: none; }
 .skill-pill { display: flex; align-items: center; gap: 10px; padding: 10px 20px; border-radius: 50px; transition: 0.3s; }
 .skill-name { font-size: 0.9rem; font-weight: 500; }
 
-/* =========================================
-   4. PROJECTS & FOOTER
-   ========================================= */
 /* =========================================
    4. PROJECTS SECTION (UPDATED)
    ========================================= */
@@ -315,7 +336,7 @@ ul { list-style: none; }
     border: none;
     border-bottom: 1px solid var(--glass-border);
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 15px;
   }
 
   .navbar-container {
@@ -337,7 +358,7 @@ ul { list-style: none; }
     flex-direction: column;
     width: 90%;
     position: absolute;
-    top: 90px;
+    top: 80px;
     left: 50%;
     transform: translateX(-50%) translateY(-20px);
     opacity: 0;
@@ -363,35 +384,63 @@ ul { list-style: none; }
   .nav-link { display: block; padding: 1rem; width: 100%; font-size: 1.1rem; }
   .nav-link:hover { background: rgba(255,255,255,0.05); }
 
-  /* --- PERBAIKAN HERO SECTION (CENTERING) --- */
+  /* --- PERBAIKAN HERO SECTION (HP: RATA KIRI & RAPAT) --- */
+  .hero-section {
+    /* Kurangi padding atas/bawah agar lebih dekat ke section bawahnya */
+    padding: 5rem 0 1rem 0; 
+    min-height: auto; /* Jangan paksa full screen */
+  }
+
   .hero-main-layout {
     flex-direction: column-reverse; /* Foto di atas, Teks di bawah */
-    gap: 2rem;
-    margin-top: 1rem;
-    width: 100%; /* Pastikan lebar penuh */
+    gap: 1rem; /* Jarak foto ke teks dirapatkan */
+    margin-top: 0;
+    margin-bottom: 2rem; /* Kurangi jarak bawah ke section berikutnya */
+    width: 100%;
+    padding: 0 10px; /* Padding kiri-kanan agar teks tidak mepet layar */
   }
   
   .hero-text { 
-    /* INI KUNCINYA: Paksa jadi Flex Column dan Center */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Tombol jadi di tengah horizontal */
-    text-align: center;  /* Teks jadi rata tengah */
+    /* KUNCI RATA KIRI */
+    align-items: flex-start; 
+    text-align: left;
     width: 100%;
   }
 
-  .hero-title { font-size: 2.5rem; }
-  .hero-subtitle { font-size: 1.2rem; }
-  
-  /* Pastikan tombol tidak ketarik full width */
-  .cta-button {
-    width: fit-content; 
-    margin: 0 auto; /* Jaga-jaga extra centering */
+  .hero-subtitle { 
+    font-size: 1rem; 
+    margin-bottom: 5px;
   }
 
-  .profile-frame { width: 220px; height: 220px; }
-}
+  .hero-title { 
+    font-size: 2.2rem; /* Ukuran Font Judul diperkecil */
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
+  
+  /* Target khusus untuk teks Typewriter (Junior Web Dev...) */
+  .hero-text h3 {
+    font-size: 1rem !important;
+    margin-bottom: 1.5rem !important; /* Jarak ke tombol */
+    height: auto;
+  }
+  
+  .cta-button {
+    width: fit-content; 
+    margin: 0; /* Hapus margin auto agar tetap di kiri */
+    padding: 10px 25px; /* Tombol sedikit lebih kecil */
+    font-size: 0.9rem;
+  }
 
+  .profile-frame { 
+    width: 160px; /* Foto diperkecil agar proporsional */
+    height: 160px;
+    margin-bottom: 0.5rem;
+    align-self: flex-start; /* Foto ikut rata kiri (ubah ke 'center' jika ingin foto di tengah) */
+  }
+}
 /* Custom Cursor Style */
 .cursor-glow {
   position: fixed;
@@ -534,21 +583,53 @@ ul { list-style: none; }
 .social-icon-circle.whatsapp:hover { background: #25D366; color: white; }
 
 
-/* Responsif Mobile */
+/* =========================================
+   RESPONSIF FOOTER (HP: RATA KIRI & GARIS)
+   ========================================= */
 @media screen and (max-width: 768px) {
   .footer-content {
-    grid-template-columns: 1fr; /* Jadi 1 kolom ke bawah */
-    gap: 2rem;
-    text-align: center;
+    grid-template-columns: 1fr;
+    gap: 0;
+    text-align: left; /* UBAH JADI RATA KIRI */
   }
   
-  .footer-contact-item {
-    justify-content: center; /* Text rata tengah */
+  /* Tambahkan Garis Pembatas antar Seksi di HP */
+  .footer-section {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Garis halus */
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
-  .footer-bottom {
-    flex-direction: column-reverse; /* Sosmed di atas copyright */
-    text-align: center;
+  /* Hilangkan garis pada seksi terakhir agar tidak dobel */
+  .footer-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  
+  /* Pastikan Icon & Teks Kontak Rata Kiri */
+  .footer-contact-item {
+    justify-content: flex-start;
+    
+  }
+
+  /* Bagian Bawah (Copyright & Sosmed) */
+.footer-bottom {
+    display: flex;
+    flex-direction: column-reverse; 
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
+.footer-socials {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .copyright-text {
+    text-align: center; /* Teks copyright rata tengah */
+    font-size: 0.85rem;
   }
 }
 
@@ -557,8 +638,8 @@ ul { list-style: none; }
    ========================================= */
 .scroll-to-top {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
+  bottom: 30px;
+  right: 60px;
   background: rgba(15, 12, 41, 0.8); /* Gelap transparan */
   border: 1px solid var(--accent);   /* Warna Cyan */
   color: var(--accent);
@@ -583,12 +664,113 @@ ul { list-style: none; }
   box-shadow: 0 0 25px var(--accent-glow);
 }
 
-/* Responsif Mobile: Geser sedikit agar tidak menutupi konten penting */
-@media screen and (max-width: 960px) {
-  .scroll-to-top {
-    bottom: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
+/* =========================================
+   ABOUT SECTION (RESPONSIVE)
+   ========================================= */
+.about-section {
+  padding: 6rem 0;
+}
+
+.about-card {
+  padding: 3rem;
+  border-radius: 20px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.about-text-container {
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+  line-height: 1.8;
+  color: #cbd5e1;
+}
+
+.about-paragraph {
+  margin-bottom: 1rem;
+}
+
+.cv-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.cv-btn {
+  border: 1px solid #fff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cv-btn:hover {
+  background: white;
+  color: var(--bg-color); /* Tombol jadi putih, teks jadi gelap saat hover */
+}
+
+/* Styling Skill Pill */
+.skill-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: default;
+  transition: 0.3s;
+}
+
+/* --- RESPONSIF KHUSUS HP (Max Width 768px) --- */
+@media screen and (max-width: 768px) {
+  
+  /* 1. Kurangi Padding Section Biar Gak Boros Tempat */
+  .about-section {
+    padding: 3rem 0; /* Dari 6rem jadi 3rem */
+  }
+
+  /* 2. Card Kaca Lebih Ramping */
+  .about-card {
+    padding: 1.5rem; /* Padding dalam dikurangi */
+    border-radius: 16px;
+  }
+
+  /* 3. Judul Lebih Kecil */
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* 4. Teks Paragraf */
+  .about-text-container {
+    font-size: 0.95rem; /* Font sedikit lebih kecil agar muat banyak */
+    line-height: 1.6;
+    text-align: left; /* OPSI: Di HP biasanya 'justify' atau 'left' lebih enak dibaca daripada 'center' */
+    margin-bottom: 2rem;
+  }
+  
+  /* 5. Tombol CV Full Width biar gampang dipencet */
+  .cv-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px;
+  }
+
+  /* 6. Skill Grid: Jarak antar skill diperkecil */
+  .skills-grid {
+    gap: 8px; /* Lebih rapat */
+  }
+  
+  .skill-pill {
+    padding: 8px 15px; /* Pill lebih kecil */
+  }
+  
+  .skill-name {
+    font-size: 0.85rem;
   }
 }

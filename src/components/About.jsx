@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import { FaReact, FaGitAlt, FaBootstrap, FaFilePdf } from 'react-icons/fa';
+import { FaFilePdf, FaReact, FaGitAlt, FaBootstrap } from 'react-icons/fa';
 import { SiLaravel, SiPhp, SiMysql, SiPostgresql, SiVite, SiTailwindcss, SiPostman, SiComposer } from 'react-icons/si';
 
 const About = () => {
-  // Data Skill Kita Pindahkan Kesini
   const skills = [
     { name: "Laravel", icon: <SiLaravel />, color: "#FF2D20" },
     { name: "PHP", icon: <SiPhp />, color: "#777BB4" },
@@ -19,46 +18,45 @@ const About = () => {
   ];
 
   return (
-    <section id="about" style={{ padding: '6rem 0' }}>
+    <section id="about" className="about-section">
       <div className="container">
         <motion.div 
-          className="glass"
+          className="glass about-card"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          style={{ padding: '3rem', borderRadius: '20px' }}
+          viewport={{ once: true }}
         >
-          {/* Judul Section */}
-          <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2.5rem' }}>Tentang Saya</h2>
+          {/* Judul */}
+          <h2 className="section-title">Tentang Saya</h2>
 
-          {/* Deskripsi Profil */}
-          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', lineHeight: '1.8', color: '#cbd5e1', marginBottom: '3rem' }}>
-            <p style={{ marginBottom: '1rem' }}>
+          {/* Deskripsi */}
+          <div className="about-text-container">
+            <p className="about-paragraph">
               Mahasiswa Sistem Informasi di <strong>Telkom University</strong> dengan minat mendalam pada <strong>Fullstack Web Development</strong>. 
               Saya memiliki keahlian fleksibel dalam ekosistem <strong>Laravel</strong>, mulai dari perancangan <strong>Backend (RESTful API & Database)</strong> 
               hingga pengembangan <strong>Frontend (PHP/Blade)</strong> yang terintegrasi.
             </p>
-            <p>
+            <p className="about-paragraph">
               Selain itu, saya juga kompeten membangun antarmuka modern berbasis <strong>React JS</strong> untuk kebutuhan aplikasi yang lebih interaktif. 
               Saat ini, saya aktif mencari kesempatan <strong>Magang (Internship)</strong> untuk menyalurkan kemampuan teknis saya dan berkontribusi nyata dalam tim pengembangan perangkat lunak profesional.
             </p>
             
-            {/* Tombol Download CV (Pindah kesini karena relevan dengan profil) */}
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
-                <a href="/cv-saya.pdf" download className="cta-button" style={{ border: '1px solid #fff', color: '#fff' }}>
+            {/* Tombol CV */}
+            <div className="cv-button-wrapper">
+                <a href="/cv-saya.pdf" download className="cta-button cv-btn">
                     <FaFilePdf /> Download CV Lengkap
                 </a>
             </div>
           </div>
 
           {/* Tech Skills */}
-          <h3 className="skills-label" style={{ textAlign: 'center'}}>Tech Stack & Tools</h3>
+          <h3 className="skills-label">Tech Stack & Tools</h3>
           <div className="skills-grid">
             {skills.map((skill, index) => (
               <motion.div 
                 key={index} 
                 className="skill-pill"
-                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
                 whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.15)' }}
               >
                 <span style={{ color: skill.color, fontSize: '1.2rem', display: 'flex' }}>
