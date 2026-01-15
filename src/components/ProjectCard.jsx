@@ -4,55 +4,61 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 const ProjectCard = ({ project }) => {
   return (
     <motion.div 
-      className="card glass"
-      whileHover={{ y: -10 }}
-      transition={{ type: "spring", stiffness: 300 }}
-      style={{ padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
+      className="card glass project-card-hover"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
     >
-      {/* Bagian Visual / Gambar */}
-      <div style={{ height: '200px', overflow: 'hidden', backgroundColor: '#000' }}>
+      {/* 1. WADAH GAMBAR (Desain Baru: Tinggi Fix & Object Cover) */}
+      <div className="project-image-container">
         <img 
             src={project.image} 
             alt={project.title} 
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-            // Tambahkan ini untuk debug: kalau error, dia lapor di console
+            className="project-img"
             onError={(e) => {
                 console.error("Gagal memuat gambar:", project.image);
-                e.target.style.display = 'none'; // Sembunyikan jika error
+                e.target.style.display = 'none'; 
             }}
         />
       </div>
 
-      <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h3 style={{ margin: '0 0 10px 0', color: '#fff' }}>{project.title}</h3>
-            <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>{project.category}</span>
-        </div>
-
-        {/* Teknologi */}
-        <p style={{ color: '#00f2ff', fontSize: '0.9rem', marginBottom: '15px' }}>
-            🛠 {project.tech}
-        </p>
-
-        {/* Penjelasan Detail */}
-        <div style={{ fontSize: '0.9rem', color: '#cbd5e1', lineHeight: '1.6', flexGrow: 1 }}>
-            <p><strong>🎯 Tujuan:</strong> {project.goal}</p>
-            <p style={{ marginTop: '5px' }}><strong>📈 Hasil:</strong> {project.result}</p>
+      {/* 2. KONTEN (Desain Baru tapi Data Lama) */}
+      <div className="project-content">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+            <h3 className="project-title" style={{ margin: 0 }}>{project.title}</h3>
+            {/* Menampilkan kategori jika ada */}
+            <span style={{ fontSize: '0.75rem', color: '#94a3b8', border: '1px solid rgba(255,255,255,0.2)', padding: '2px 8px', borderRadius: '10px' }}>
+                {project.category || 'Web App'}
+            </span>
         </div>
         
-        {/* Link Repo & Demo */}
-        <div style={{ marginTop: '20px', display: 'flex', gap: '15px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '15px' }}>
-            <a href={project.repoLink} target="_blank" className="card-link" style={{ fontSize: '0.9rem' }}>
-                <FaGithub /> Source Code
-            </a>
-            {project.demoLink && (
-                <a href={project.demoLink} target="_blank" className="card-link" style={{ fontSize: '0.9rem', color: '#00f2ff' }}>
-                    <FaExternalLinkAlt /> Live Demo
-                </a>
-            )}
+        {/* Teknologi (Menggunakan data 'tech' kamu) */}
+        <p style={{ color: '#00f2ff', fontSize: '0.85rem', marginBottom: '15px', fontWeight: '500' }}>
+          🛠 {project.tech}
+        </p>
+
+        {/* Deskripsi (Menggabungkan Goal & Result ke dalam desain baru) */}
+        <div className="project-description">
+            <p style={{ marginBottom: '8px' }}><strong>🎯 Tujuan:</strong> {project.goal}</p>
+            <p><strong>📈 Hasil:</strong> {project.result}</p>
+        </div>
+        
+        {/* Tombol Link (Menggunakan variable 'repoLink' & 'demoLink' kamu) */}
+        <div className="project-links">
+          <a href={project.repoLink} target="_blank" rel="noreferrer" className="card-link">
+            <FaGithub /> Source Code
+          </a>
+          
+          {project.demoLink && (
+              <a href={project.demoLink} target="_blank" rel="noreferrer" className="card-link highlight">
+                <FaExternalLinkAlt /> Live Demo
+              </a>
+          )}
         </div>
       </div>
     </motion.div>
   );
 };
+
 export default ProjectCard;

@@ -1,22 +1,29 @@
-/* src/App.css */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
+/* =========================================
+   1. GLOBAL & VARIABLES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap');
 
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --bg-color: #0f0c29;
   --text-main: #ffffff;
   --text-secondary: #94a3b8;
-  --accent: #00f2ff; /* Warna Neon Cyan */
+  --accent: #00f2ff;
   --accent-glow: rgba(0, 242, 255, 0.4);
+  
+  /* Settingan Glass Effect */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 12px;
 }
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  margin: 0;
   font-family: 'Outfit', sans-serif;
-  background-color: #0f0c29;
+  background-color: var(--bg-color);
   color: var(--text-main);
   overflow-x: hidden;
-  /* Background Mesh Gradient untuk efek kaca */
+  /* Background Aurora */
   background-image: 
     radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
     radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
@@ -24,33 +31,43 @@ body {
   min-height: 100vh;
 }
 
-/* --- UTILITY CLASS: THE GLASS EFFECT --- */
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* Utility Class: THE GLASS EFFECT (Jangan Dihapus) */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px); /* Kunci efek buram */
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Layout */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+.highlight { color: var(--accent); }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* =========================================
+   2. NAVBAR (RESPONSIVE & GLASS)
+   ========================================= */
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 20px; /* Memberi jarak sedikit dari atas supaya efek kacanya kelihatan mewah */
+  z-index: 999;
+  margin: 0 100px; /* Margin kiri kanan agar navbar melayang (floating) */
+  border-radius: 16px; /* Sudut membulat */
+  transition: 0.3s all ease;
 }
 
-/* Navbar */
-.navbar {
+.navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  margin-top: 20px;
-  border-radius: 16px;
-  position: sticky;
-  top: 20px;
-  z-index: 100;
+  width: 100%;
+  height: 80px;
 }
 
 .logo {
@@ -61,25 +78,36 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-.nav-links {
-  list-style: none;
+.nav-menu {
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
-.nav-links a {
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
   color: var(--text-secondary);
-  text-decoration: none;
   transition: 0.3s;
 }
 
-.nav-links a:hover { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
+.nav-link:hover {
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent-glow);
+}
 
-/* Hero */
-.hero-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 4rem 1rem;
+.menu-icon {
+  display: none; /* Desktop: Icon Sembunyi */
+}
+
+/* =========================================
+   3. HERO SECTION
+   ========================================= */
+.hero-section {
+  padding: 6rem 0; /* Tambah padding karena navbar floating */
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
 }
 
 .hero-main-layout {
@@ -90,91 +118,296 @@ body {
   margin-bottom: 5rem;
 }
 
-.hero-text { flex: 1; text-align: left; }
-.hero-title { font-size: 3rem; margin: 0; }
-.hero-subtitle { font-size: 1.5rem; color: var(--accent); font-weight: 300; margin: 0.5rem 0 1.5rem 0; }
-.hero-description { line-height: 1.8; color: var(--text-secondary); font-size: 1.1rem; }
+.hero-text { flex: 1; }
+.hero-title { font-size: 3.5rem; line-height: 1.1; margin-bottom: 10px; }
+.hero-subtitle { font-size: 1.5rem; color: var(--text-secondary); font-weight: 300; margin-bottom: 1.5rem; }
+.hero-description { line-height: 1.8; color: #cbd5e1; font-size: 1.1rem; margin-bottom: 2rem; }
 
-/* Styling Foto */
+.hero-buttons { display: flex; align-items: center; gap: 1.5rem; }
+
+.cta-button {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.cta-button:hover { background: var(--accent); color: #000; box-shadow: 0 0 25px var(--accent-glow); }
+
+.icon-btn { font-size: 1.8rem; color: var(--text-secondary); transition: 0.3s; }
+.icon-btn:hover { color: #fff; transform: scale(1.1); }
+
+/* Foto Profil */
 .hero-image-wrapper { flex: 0.8; display: flex; justify-content: center; }
 .profile-frame {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  padding: 10px;
-  background: linear-gradient(45deg, var(--accent), transparent);
-  box-shadow: 0 0 30px var(--accent-glow);
+  width: 320px; height: 320px; border-radius: 50%;
+  padding: 8px;
+  background: linear-gradient(135deg, var(--accent), transparent);
+  box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
 }
 .profile-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 5px solid #0f0c29;
+  width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+  border: 6px solid var(--bg-color);
+  background-color: #1e293b;
 }
 
-/* Tombol */
-.hero-buttons { display: flex; align-items: center; gap: 1.5rem; margin-top: 2rem; }
-.icon-btn { font-size: 1.8rem; color: white; text-decoration: none; display: flex; }
+/* Skills */
+.skills-wrapper { text-align: center; }
+.skills-label { color: var(--text-secondary); font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2rem; }
+.skills-grid { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+.skill-pill { display: flex; align-items: center; gap: 10px; padding: 10px 20px; border-radius: 50px; transition: 0.3s; }
+.skill-name { font-size: 0.9rem; font-weight: 500; }
 
-/* Skills Section */
-.skills-label { text-align: center; color: var(--text-secondary); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; }
-.skills-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-.skill-pill { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 12px; }
-
-/* Responsif untuk HP */
-@media (max-width: 768px) {
-  .hero-main-layout { flex-direction: column-reverse; text-align: center; }
-  .hero-text { text-align: center; }
-  .hero-buttons { justify-content: center; }
-  .profile-frame { width: 200px; height: 200px; }
+/* =========================================
+   4. PROJECTS & FOOTER
+   ========================================= */
+/* =========================================
+   4. PROJECTS SECTION (UPDATED)
+   ========================================= */
+.projects-section {
+  padding: 6rem 0;
 }
 
-/* Projects Grid */
-.projects-section { padding: 4rem 0; }
-.projects-section h2 { text-align: center; margin-bottom: 3rem; font-size: 2rem; }
-
+/* Grid Layout */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  /* Menggunakan minmax 350px agar kartu tidak terlalu kecil */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  justify-content: center;
 }
 
-/* Card Styling */
+/* Styling Kartu Utama */
 .card {
-  padding: 2rem;
   border-radius: 20px;
-  transition: transform 0.3s, border-color 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden; /* Penting agar gambar tidak keluar radius */
+  display: flex;
+  flex-direction: column; /* Agar isi kartu tersusun ke bawah */
+  height: 100%; /* Agar semua kartu di baris yang sama tingginya setara */
+  transition: all 0.3s ease;
+}
+
+.project-card-hover:hover {
+  border-color: var(--accent);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 242, 255, 0.15);
+}
+
+/* --- BAGIAN PENTING: PENGATURAN GAMBAR --- */
+.project-image-container {
+  width: 100%;
+  height: 220px; /* KUNCI: Tinggi gambar dikunci fix */
+  overflow: hidden;
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  /* KUNCI: object-fit cover membuat gambar dicrop proporsional, TIDAK GEPENG */
+  object-fit: cover; 
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .project-img {
+  transform: scale(1.1); /* Efek zoom sedikit saat hover */
+}
+/* ----------------------------------------- */
+
+/* Styling Konten Teks */
+.project-content {
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  flex-grow: 1; /* Mengisi sisa ruang kosong agar tombol link rata bawah */
 }
 
-.card:hover {
-  transform: translateY(-10px);
-  border-color: var(--accent);
-  box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
+.project-title {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #fff;
 }
 
-.tech-stack { margin: 1rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.tech-badge {
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.tech-pill {
   font-size: 0.75rem;
-  background: rgba(255,255,255,0.1);
+  background: rgba(0, 242, 255, 0.1);
+  color: var(--accent);
   padding: 4px 10px;
   border-radius: 20px;
-  color: var(--accent);
+  font-weight: 500;
+}
+
+.project-description {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Styling Link di Bawah */
+.project-links {
+  margin-top: auto; /* Memaksa tombol ke bagian paling bawah kartu */
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card-link {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
+  color: var(--text-secondary);
+  font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-top: auto; /* Push ke bawah */
+  gap: 8px;
+  transition: 0.3s;
+  font-size: 0.9rem;
 }
 
-/* Footer */
-.footer { text-align: center; padding: 2rem; color: var(--text-secondary); margin-top: 4rem; }
+.card-link:hover {
+  color: #fff;
+}
+
+.card-link.highlight {
+  color: var(--accent);
+}
+.card-link.highlight:hover {
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Responsif untuk HP */
+@media screen and (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; /* Satu kolom di HP */
+    padding: 0 20px;
+  }
+  .project-image-container {
+    height: 200px; /* Tinggi gambar sedikit dikecilkan di HP */
+  }
+}
+
+/* =========================================
+   5. MOBILE RESPONSIVE (MEDIA QUERIES)
+   ========================================= */
+@media screen and (max-width: 960px) {
+  
+  /* Navbar Mobile */
+  .navbar {
+    top: 0;
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--glass-border);
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .menu-icon {
+    display: block;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--text-main);
+  }
+
+  /* Dropdown Menu */
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(15, 12, 41, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1rem 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 998;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  .nav-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .nav-item { width: 100%; text-align: center; }
+  .nav-link { display: block; padding: 1rem; width: 100%; font-size: 1.1rem; }
+  .nav-link:hover { background: rgba(255,255,255,0.05); }
+
+  /* --- PERBAIKAN HERO SECTION (CENTERING) --- */
+  .hero-main-layout {
+    flex-direction: column-reverse; /* Foto di atas, Teks di bawah */
+    gap: 2rem;
+    margin-top: 1rem;
+    width: 100%; /* Pastikan lebar penuh */
+  }
+  
+  .hero-text { 
+    /* INI KUNCINYA: Paksa jadi Flex Column dan Center */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Tombol jadi di tengah horizontal */
+    text-align: center;  /* Teks jadi rata tengah */
+    width: 100%;
+  }
+
+  .hero-title { font-size: 2.5rem; }
+  .hero-subtitle { font-size: 1.2rem; }
+  
+  /* Pastikan tombol tidak ketarik full width */
+  .cta-button {
+    width: fit-content; 
+    margin: 0 auto; /* Jaga-jaga extra centering */
+  }
+
+  .profile-frame { width: 220px; height: 220px; }
+}
+
+/* Custom Cursor Style */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent); /* Warna Neon */
+  border-radius: 50%;
+  pointer-events: none; /* PENTING: Agar bisa klik elemen di belakangnya */
+  z-index: 9999;
+  box-shadow: 0 0 10px var(--accent-glow);
+  mix-blend-mode: difference; /* Efek warna keren saat kena teks putih */
+}
+
+/* Sembunyikan cursor custom di HP (karena HP pakai touch) */
+@media screen and (max-width: 960px) {
+  .cursor-glow { display: none; }
+}

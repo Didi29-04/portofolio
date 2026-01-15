@@ -1,20 +1,42 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import '../App.css';
 
 const Navbar = () => {
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
   return (
-    <motion.nav 
-      className="navbar glass"
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="logo">AlfidianPorto's</div>
-      <ul className="nav-links">
-        <li><a href="#home">beranda</a></li>
-        <li><a href="#projects">Portofolio</a></li>
-        <li><a href="#contact">Kontak</a></li>
-      </ul>
-    </motion.nav>
+    <nav className="navbar glass">
+      <div className="navbar-container container">
+        
+        <div className="logo" onClick={closeMobileMenu}>
+          MuhammadAlfidian<span className="highlight">.</span>
+        </div>
+
+        <div className="menu-icon" onClick={handleClick}>
+          {click ? <FaTimes /> : <FaBars />}
+        </div>
+
+        <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+          <li className="nav-item">
+            <a href="#home" className="nav-link" onClick={closeMobileMenu}>Beranda</a>
+          </li>
+          <li className="nav-item">
+            <a href="#about" className="nav-link" onClick={closeMobileMenu}>Tentang Saya</a>
+          </li>
+          <li className="nav-item">
+            <a href="#projects" className="nav-link" onClick={closeMobileMenu}>Portofolio</a>
+          </li>
+          <li className="nav-item">
+            <a href="#contact" className="nav-link" onClick={closeMobileMenu}>Kontak</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 };
+
 export default Navbar;
