@@ -34,24 +34,24 @@ const About = () => {
           <div className="about-text-container">
             <p className="about-paragraph">
               Mahasiswa Sistem Informasi di <strong>Telkom University</strong> dengan minat mendalam pada <strong>Fullstack Web Development</strong>. 
-              Saya memiliki keahlian fleksibel dalam ekosistem <strong>Laravel</strong>, mulai dari perancangan <strong>Backend (RESTful API & Database)</strong> 
+              Saya memiliki keahlian fleksibel dalam ekosistem <strong>Laravel</strong>, mulai dari perancangan <strong>Backend (RESTful API & Database) </strong> 
               hingga pengembangan <strong>Frontend (PHP/Blade)</strong> yang terintegrasi.
             </p>
             <p className="about-paragraph">
               Selain itu, saya juga kompeten membangun antarmuka modern berbasis <strong>React JS</strong> untuk kebutuhan aplikasi yang lebih interaktif. 
-              Saat ini, saya aktif mencari kesempatan <strong>Magang (Internship)</strong> untuk menyalurkan kemampuan teknis saya dan berkontribusi nyata dalam tim pengembangan perangkat lunak profesional.
+              Saat ini, saya bersemangat mencari kesempatan <strong>Magang (Internship)</strong> untuk menyalurkan kemampuan teknis saya dan berkontribusi nyata dalam tim pengembangan perangkat lunak profesional.
             </p>
             
             {/* Tombol CV */}
             <div className="cv-button-wrapper">
-                <a href="/cv-saya.pdf" download className="cta-button cv-btn">
+                <a href="https://drive.google.com/file/d/1KcpJyF0nhcjpnVm7EUTwuUGuQ_0eN6sv/view?usp=sharing" download className="cta-button cv-btn">
                     <FaFilePdf /> Download CV Lengkap
                 </a>
             </div>
           </div>
 
           {/* Tech Skills */}
-          <h3 className="skills-label">Tech Stack & Tools</h3>
+          <h3 className="skills-label" style={{ textAlign: 'center' }}>Tech Stack & Tools</h3>
           <div className="skills-grid">
             {skills.map((skill, index) => (
               <motion.div 

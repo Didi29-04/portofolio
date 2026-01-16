@@ -26,7 +26,7 @@ const Hero = () => {
               <Typewriter
                 options={{
                   strings: [
-                    'Junior Web Developer',
+                    'Aspiring Web Developer',
                     'Laravel Enthusiast',
                     'React Learner',
                     'Mahasiswa Telkom University',

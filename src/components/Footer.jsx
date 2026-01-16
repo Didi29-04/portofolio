@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Kolom 1: Identitas */}
           <div className="footer-section">
             <h2 className="footer-brand">Muhammad Alfidian<span style={{ color: '#00f2ff' }}>.</span></h2>
-            <p className="footer-role">Junior Web Developer</p>
+            <p className="footer-role">Aspiring Web Developer</p>
             <div className="footer-contact-item">
                 <FaMapMarkerAlt color="#F44336" /> 
                 <span>Sidoarjo, Jawa Timur</span>
